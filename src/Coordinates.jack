@@ -1,0 +1,18 @@
+class Coordinates
+{
+    static int X;
+    static int Y;
+
+    function void Coordinates(int x, int y) {
+         let X = x;
+         let Y = y;
+    }
+
+    method int GetX(){
+        return X;
+    }
+
+    method int GetY(){
+        return Y;
+    }
+}

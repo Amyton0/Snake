@@ -1,0 +1,21 @@
+class Random {
+    static int prev;
+    static int const1;
+    static int const2;
+
+    function void Random() {
+        let prev = 1;
+        let const1 = 257;
+        let const2 = 513;
+    }
+
+    function int RandInt(int lowerLimit, int upperLimit) {
+         int range = upperLimit - lowerLimit;
+         let prev = Math2.Mod(const1 * prev + const2, range);
+         return upperLimit + prev;
+    }
+
+    function Coordinates RandCoords(int leftLimit, int rightLimit, int topLimit, int BottomLimit) {
+        return Coordinates.Coordinates(RandInt(leftLimit, rightLimit), RandInt(topLimit, BottomLimit))
+    }
+}
