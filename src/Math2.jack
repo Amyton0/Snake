@@ -1,6 +1,6 @@
 class Math2
 {
-    method int Mod(int divident, int divider) {
+    function int mod(int divident, int divider) {
          return divident - ((divident / divider) * divider);
     }
 }

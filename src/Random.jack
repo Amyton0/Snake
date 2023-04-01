@@ -3,19 +3,17 @@ class Random {
     static int const1;
     static int const2;
 
-    function void Random() {
+    method int randInt(int lowerLimit, int upperLimit) {
+        var int range;
         let prev = 1;
-        let const1 = 257;
-        let const2 = 513;
+        let const1 = 67;
+        let const2 = 2;
+        let range = upperLimit - lowerLimit;
+        let prev = Math2.mod(const1 * prev + const2, range);
+        return lowerLimit + prev;
     }
 
-    function int RandInt(int lowerLimit, int upperLimit) {
-         int range = upperLimit - lowerLimit;
-         let prev = Math2.Mod(const1 * prev + const2, range);
-         return upperLimit + prev;
-    }
-
-    function Coordinates RandCoords(int leftLimit, int rightLimit, int topLimit, int BottomLimit) {
-        return Coordinates.Coordinates(RandInt(leftLimit, rightLimit), RandInt(topLimit, BottomLimit))
+    method Coordinates randCoords(int leftLimit, int rightLimit, int topLimit, int BottomLimit) {
+        return Coordinates.new(randInt(leftLimit, rightLimit), randInt(topLimit, BottomLimit));
     }
 }

@@ -3,16 +3,17 @@ class Coordinates
     static int X;
     static int Y;
 
-    function void Coordinates(int x, int y) {
+    constructor Coordinates new(int x, int y) {
          let X = x;
          let Y = y;
+         return this;
     }
 
-    method int GetX(){
+    method int getX(){
         return X;
     }
 
-    method int GetY(){
+    method int getY(){
         return Y;
     }
 }
