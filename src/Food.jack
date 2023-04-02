@@ -1,0 +1,27 @@
+class Food {
+     static Coordinates location;
+
+     constructor Food new() {
+          let location = Random.randCoords(108, 504, 4, 252);
+          do draw();
+          return this;
+     }
+
+     method void draw() {
+          do Screen.setColor(true);
+          do Screen.drawRectangle(Coordinates.getX(location), Coordinates.getY(location), Coordinates.getX(location) + 3, Coordinates.getY(location) + 3);
+          return;
+     }
+
+   /** Erases the square from the screen. */
+     method void erase() {
+          do Screen.setColor(false);
+          do Screen.drawRectangle(Coordinates.getX(location), Coordinates.getY(location), Coordinates.getX(location) + 3, Coordinates.getY(location) + 3);
+          return;
+     }
+     method void dispose() {
+          do Memory.deAlloc(this);
+          return;
+     }
+
+}
