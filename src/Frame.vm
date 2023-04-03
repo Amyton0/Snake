@@ -1,0 +1,50 @@
+function Frame.new 0
+push constant 0
+call Memory.alloc 1
+pop pointer 0
+push pointer 0
+call Frame.drawScoreRectangle 1
+pop temp 0
+push pointer 0
+call Frame.drawGameRectangle 1
+pop temp 0
+push pointer 0
+return
+function Frame.drawScoreRectangle 0
+push argument 0
+pop pointer 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push constant 4
+push constant 4
+push constant 104
+push constant 104
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+return
+function Frame.drawGameRectangle 0
+push argument 0
+pop pointer 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push constant 108
+push constant 4
+push constant 508
+push constant 262
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+return
+function Frame.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
