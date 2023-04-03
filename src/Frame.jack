@@ -15,10 +15,20 @@ class Frame {
           return;
      }
 
+     function void drawScore(int x0, int y0, int score) {
+          do Output.moveCursor(x0,y0);
+		do Output.printString("Score: ");
+		do Output.moveCursor(x0,y0+6); 
+		do Output.printInt(score);
+          do Output.moveCursor(x0+3,y0);
+		do Output.printString("Close game:Q");
+
+
+          return;
+     }
 
      method void dispose() {
           do Memory.deAlloc(this);
           return;
      }
-
 }
