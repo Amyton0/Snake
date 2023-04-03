@@ -1,0 +1,24 @@
+class Frame {
+
+     static int x0;
+     static int y0;
+     static int x1;
+     static int y1;
+
+     static int frameWidth; 
+
+     function void drawFrame(int x0, int y0, int x1, int y1, int frameWidth) {
+          do Screen.setColor(true);
+          do Screen.drawRectangle(x0,y0,x1,y1);
+          do Screen.setColor(false);
+          do Screen.drawRectangle(x0+frameWidth,y0+frameWidth,x1-frameWidth,y1-frameWidth);
+          return;
+     }
+
+
+     method void dispose() {
+          do Memory.deAlloc(this);
+          return;
+     }
+
+}
