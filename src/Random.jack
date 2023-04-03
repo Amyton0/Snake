@@ -3,17 +3,21 @@ class Random {
     static int const1;
     static int const2;
 
-    method int randInt(int lowerLimit, int upperLimit) {
+    function int randInt(int lowerLimit, int upperLimit) {
         var int range;
-        let prev = 1;
+        
+        if (prev = 0) {
+            let prev = 1;
+        }
         let const1 = 67;
-        let const2 = 2;
+        let const2 = 47;
         let range = upperLimit - lowerLimit;
         let prev = Math2.mod(const1 * prev + const2, range);
+        
         return lowerLimit + prev;
     }
 
-    method Coordinates randCoords(int leftLimit, int rightLimit, int topLimit, int BottomLimit) {
-        return Coordinates.new(randInt(leftLimit, rightLimit), randInt(topLimit, BottomLimit));
+    function Coordinates randCoords(int topLimit, int bottomLimit, int leftLimit, int rightLimit) {
+        return Coordinates.new(Random.randInt(leftLimit, rightLimit), Random.randInt(topLimit, bottomLimit));
     }
 }

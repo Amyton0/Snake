@@ -1,0 +1,11 @@
+function Main.main 6
+push constant 4
+pop local 0
+push constant 110
+pop local 1
+push constant 251
+pop local 2
+push constant 507
+pop local 3
+push constant 0
+return

@@ -1,0 +1,28 @@
+class SnakeSegment {
+     field Coordinates coordinates;
+
+     constructor SnakeSegment new(Coordinates coords) {
+          let coordinates = coords;
+          do draw();
+          return this;
+     }
+
+     method void draw() {
+          do Screen.setColor(true);
+          do Screen.drawRectangle(coordinates.getX(), coordinates.getY(), coordinates.getX() + 5, coordinates.getY() + 5);
+          return;
+     }
+
+   /** Erases the square from the screen. */
+     method void erase() {
+          do Screen.setColor(false);
+          do Screen.drawRectangle(location.getX(), location.getY(), location.getX() + 5, location.getY() + 5);
+          return;
+     }
+     
+     method void dispose() {
+          do Memory.deAlloc(this);
+          return;
+     }
+
+}

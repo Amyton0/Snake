@@ -1,6 +1,22 @@
 class Main
 {
     function void main() {
+        var int topBorder;
+        var int leftBorder;
+        var int bottomBorder;
+        var int rightBorder;
+        var int i;
+        var Food food;
+        let topBorder = 4;
+        let leftBorder = 110;
+        let bottomBorder = 251;
+        let rightBorder = 507;
         return;
     }
 }
+
+
+        // var Food food;
+        // let food = Food.new();
+        // do food.dispose();
+        // do food.erase();

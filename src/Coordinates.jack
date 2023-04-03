@@ -1,12 +1,13 @@
 class Coordinates
 {
-    static int X;
-    static int Y;
+    field int X;
+    field int Y;
 
     constructor Coordinates new(int x, int y) {
-         let X = x;
-         let Y = y;
-         return this;
+        let X = x;
+        let Y = y;
+         
+        return this;
     }
 
     method int getX(){

@@ -1,14 +1,19 @@
 function Random.randInt 1
-push argument 0
-pop pointer 0
+push static 0
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
 push constant 1
 pop static 0
+label IF_FALSE0
 push constant 67
 pop static 1
-push constant 2
+push constant 47
 pop static 2
-push argument 2
 push argument 1
+push argument 0
 sub
 pop local 0
 push static 1
@@ -19,20 +24,16 @@ add
 push local 0
 call Math2.mod 2
 pop static 0
-push argument 1
+push argument 0
 push static 0
 add
 return
 function Random.randCoords 0
-push argument 0
-pop pointer 0
-push pointer 0
-push argument 1
 push argument 2
-call Random.randInt 3
-push pointer 0
 push argument 3
-push argument 4
-call Random.randInt 3
+call Random.randInt 2
+push argument 0
+push argument 1
+call Random.randInt 2
 call Coordinates.new 2
 return
