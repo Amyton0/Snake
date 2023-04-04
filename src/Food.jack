@@ -1,24 +1,29 @@
 class Food {
-     field Coordinates location;
+     field RelativeCoordinates relativeCoordinates;
+     field Coordinates realCoordinates;
 
      constructor Food new(int topLimit, int bottomLimit, int leftLimit, int rightLimit) {
-          let location = Random.randCoords(topLimit, bottomLimit - 3, leftLimit, rightLimit - 3);
+          let realCoordinates = Random.randCoords(topLimit, bottomLimit - 3, leftLimit, rightLimit - 3);
+          //let relativeCoordinates = метод для перевода в относительные координаты
           do draw();
           return this;
      }
 
+     method RelativeCoordinates getRelativeCoordinates() {
+         return relativeCoordinates;
+     }
+
      method void draw() {
           do Screen.setColor(true);
-          do Output.printInt(location.getX());
-          do Output.printInt(location.getY());
-          do Screen.drawRectangle(location.getX(), location.getY(), location.getX() + 3, location.getY() + 3);
+          do Output.printInt(realCoordinates.getX());
+          do Output.printInt(realCoordinates.getY());
+          do Screen.drawRectangle(realCoordinates.getX(), realCoordinates.getY(), realCoordinates.getX() + 3, realCoordinates.getY() + 3);
           return;
      }
 
-   /** Erases the square from the screen. */
      method void erase() {
           do Screen.setColor(false);
-          do Screen.drawRectangle(location.getX(), location.getY(), location.getX() + 3, location.getY() + 3);
+          do Screen.drawRectangle(realCoordinates.getX(), realCoordinates.getY(), realCoordinates.getX() + 3, realCoordinates.getY() + 3);
           return;
      }
      

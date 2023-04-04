@@ -1,28 +1,33 @@
 class SnakeSegment {
-     field Coordinates coordinates;
+     field RelativeCoordinates coordinates;
+     field Coordinates realCoordinates;
 
-     constructor SnakeSegment new(Coordinates coords) {
-          let coordinates = coords;
-          do draw();
-          return this;
+     constructor SnakeSegment new(RelativeCoordinates coords) {
+        let coordinates = coords;
+        //let realCoordinates = метод для перевода в реальные координаты
+        do draw();
+        return this;
+     }
+
+     method RelativeCoordinates getRelativeCoordinates() {
+         return coordinates;
      }
 
      method void draw() {
-          do Screen.setColor(true);
-          do Screen.drawRectangle(coordinates.getX(), coordinates.getY(), coordinates.getX() + 5, coordinates.getY() + 5);
-          return;
+        do Screen.setColor(true);
+        do Screen.drawRectangle(realCoordinates.getX(), realCoordinates.getY(), realCoordinates.getX() + 4, realCoordinates.getY() + 4);
+        return;
      }
 
-   /** Erases the square from the screen. */
      method void erase() {
-          do Screen.setColor(false);
-          do Screen.drawRectangle(location.getX(), location.getY(), location.getX() + 5, location.getY() + 5);
-          return;
+        do Screen.setColor(false);
+        do Screen.drawRectangle(realCoordinates.getX(), realCoordinates.getY(), realCoordinates.getX() + 4, realCoordinates.getY() + 4);
+        return;
      }
      
      method void dispose() {
-          do Memory.deAlloc(this);
-          return;
+        do Memory.deAlloc(this);
+        return;
      }
 
 }

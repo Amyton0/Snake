@@ -30,9 +30,9 @@ class Game {
          }
          if (key = 81)  { let exit = true; }     // q key
          if (key = 131) { let direction = 1; }   // up arrow
-         if (key = 133) { let direction = 2; }   // down arrow
-         if (key = 130) { let direction = 3; }   // left arrow
-         if (key = 132) { let direction = 4; }   // right arrow
+         if (key = 132) { let direction = 2; }   // right arrow
+         if (key = 133) { let direction = 3; }   // down arrow
+         if (key = 130) { let direction = 4; }   // left arrow
 
          // waits for the key to be released
          while (~(key = 0)) {

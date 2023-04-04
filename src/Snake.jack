@@ -1,0 +1,118 @@
+class Snake {
+    field Array snake;
+    field int snakeSize;
+
+    constructor Snake new(int height, int width, int size) {
+        var int i, x0, y0;
+        let snake = Array.new(size);
+        let snakeSize = size;
+        let i = 0;
+        let x0 = width / 2 + 1;
+        let y0 = height / 2 - (size / 2 - 1);
+        while (i < 0) {
+            let snake[i] = SnakeSegment.new(RelativeCoordinates.new(x0, y0 + i));
+            let i = i + 1;
+        }
+        return this;
+    }
+    
+    method void draw() {
+        var int i;
+        let i = 0;
+        while (i < 0) {
+            do snake[i].draw();
+            let i = i + 1
+        }
+        return;
+    }
+
+    method void move(int direction) {
+        var int i;
+
+        do snake[snakeSize - 1].erase();
+        do snake[snakeSize - 1].dispose();
+
+        let i = snakeSize - 1;
+
+        while (i > 0) {
+            let snake[i] = snake[i - 1];
+            let i = i - 1;
+        }
+
+        if (direction = 0) {
+            let snake[0] = SnakeSegment.new(RelativeCoordinates.new(snake[1].getRelativeCoordinates.getX(), snake[1].getRelativeCoordinates.getY() - 1))
+        }
+        if (direction = 1) {
+            let snake[0] = SnakeSegment.new(RelativeCoordinates.new(snake[1].getRelativeCoordinates.getX() + 1, snake[1].getRelativeCoordinates.getY()))
+        }
+        if (direction = 2) {
+            let snake[0] = SnakeSegment.new(RelativeCoordinates.new(snake[1].getRelativeCoordinates.getX(), snake[1].getRelativeCoordinates.getY() + 1))
+        }
+        if (direction = 3) {
+            let snake[0] = SnakeSegment.new(RelativeCoordinates.new(snake[1].getRelativeCoordinates.getX() - 1, snake[1].getRelativeCoordinates.getY()))
+        }
+
+        return;
+    }
+
+    method void increase(int direction) {
+        var int i;
+        var Array newSnake;
+
+        let snakeSize = snakeSize + 1;
+        let newSnake = Array.new(snakeSize);
+        let i = snakeSize - 1;
+
+        while (i > 0) {
+            let newSnake[i] = snake[i - 1];
+            let i = i - 1;
+        }
+
+        if (direction = 0) {
+            let newSnake[0] = SnakeSegment.new(RelativeCoordinates.new(newSnake[1].getRelativeCoordinates.getX(), newSnake[1].getRelativeCoordinates.getY() - 1))
+        }
+        if (direction = 1) {
+            let newSnake[0] = SnakeSegment.new(RelativeCoordinates.new(newSnake[1].getRelativeCoordinates.getX() + 1, newSnake[1].getRelativeCoordinates.getY()))
+        }
+        if (direction = 2) {
+            let newSnake[0] = SnakeSegment.new(RelativeCoordinates.new(newSnake[1].getRelativeCoordinates.getX(), newSnake[1].getRelativeCoordinates.getY() + 1))
+        }
+        if (direction = 3) {
+            let newSnake[0] = SnakeSegment.new(RelativeCoordinates.new(newSnake[1].getRelativeCoordinates.getX() - 1, newSnake[1].getRelativeCoordinates.getY()))
+        }
+
+        let snake = newSnake;
+
+        return;
+    }
+
+    method bool isCollision(int height, int width) {
+        var int i;
+
+        if (snake[0].coordinates.getX() < 0) {
+            return false;
+        }
+        if (snake[0].coordinates.getY() < 0) {
+            return false;
+        }
+        if (snake[0].coordinates.getX() > width) {
+            return false;
+        }
+        if (snake[0].coordinates.getY() > height) {
+            return false;
+        }
+
+        let i = 2;
+
+        while (i < snakeSize) {
+            if (snake[0].coordinates.getX() = snake[i].coordinates.getX()) {
+                if (snake[0].coordinates.getY() = snake[i].coordinates.getY()) {
+                    return false;
+                }
+            }
+            let i = i + 1;
+        }
+
+        return true;
+    }
+}

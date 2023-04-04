@@ -1,0 +1,20 @@
+class RelativeCoordinates
+{
+    field int X;
+    field int Y;
+
+    constructor Coordinates new(int x, int y) {
+        let X = x;
+        let Y = y;
+         
+        return this;
+    }
+
+    method int getX(){
+        return X;
+    }
+
+    method int getY(){
+        return Y;
+    }
+}
