@@ -1,0 +1,22 @@
+class EndScreen {
+
+    static int x;
+    static int y;
+    static int score; 
+
+     function void drawEnd(int x, int y, int score) {
+        do Screen.clearScreen();
+        do Output.moveCursor(x,y);
+		do Output.printString("GAME OVER");
+		do Output.moveCursor(x+3,y);
+        do Output.printString("Score:");
+        do Output.moveCursor(x+3,y+6);
+		do Output.printInt(score);
+        return;
+     }
+
+     method void dispose() {
+          do Memory.deAlloc(this);
+          return;
+     }
+}
