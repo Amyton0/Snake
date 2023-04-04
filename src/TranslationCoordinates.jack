@@ -1,0 +1,21 @@
+class TranslationCoordinates {
+
+    static int x0;
+    static int y0;
+
+    static Coordinates coordinates;
+    static RelativeCoordinates relativeCoordinates;
+
+    static int width;
+    
+    method RelativeCoordinates AbsoluteToRelative ( int x0, int y0, int width, Coordinates coordinates ) {
+         return RelativeCoordinates.new(x0 + width*coordinates.getX(), y0 + width*coordinates.getY()); 
+    } 
+    
+    method Coordinates RelativeToAbsolute ( int x0, int y0, int width, RelativeCoordinates relativeCoordinates ) {
+         return Coordinates.new((relativeCoordinates.getX()-x0)/width, (relativeCoordinates.getX()-x0)/width); 
+    } 
+
+
+
+}
