@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class RelativeCoordinates
 {
     field int X;
@@ -17,4 +18,25 @@ class RelativeCoordinates
     method int getY(){
         return Y;
     }
+=======
+class RelativeCoordinates
+{
+    field int X;
+    field int Y;
+
+    constructor Coordinates new(int x, int y) {
+        let X = x;
+        let Y = y;
+         
+        return this;
+    }
+
+    method int getX(){
+        return X;
+    }
+
+    method int getY(){
+        return Y;
+    }
+>>>>>>> d0fabe9ec1dfb24208f57e7ce0d93703d5fd0f2b
 }
