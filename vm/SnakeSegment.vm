@@ -1,35 +1,23 @@
-function Food.new 0
+function SnakeSegment.new 0
 push constant 2
 call Memory.alloc 1
 pop pointer 0
 push argument 0
-push constant 1
-add
-push argument 1
-push constant 1
-sub
-push argument 2
-push constant 1
-add
-push argument 3
-push constant 1
-sub
-call Random.randCoords 4
-pop this 1
-push this 1
-call TranslationCoordinates.AbsoluteToRelative 1
 pop this 0
+push argument 0
+call TranslationCoordinates.RelativeToAbsolute 1
+pop this 1
 push pointer 0
-call Food.draw 1
+call SnakeSegment.draw 1
 pop temp 0
 push pointer 0
 return
-function Food.getRelativeCoordinates 0
+function SnakeSegment.getRelativeCoordinates 0
 push argument 0
 pop pointer 0
 push this 0
 return
-function Food.draw 0
+function SnakeSegment.draw 0
 push argument 0
 pop pointer 0
 push constant 0
@@ -38,25 +26,21 @@ call Screen.setColor 1
 pop temp 0
 push this 1
 call Coordinates.getX 1
-push constant 1
-sub
 push this 1
 call Coordinates.getY 1
-push constant 1
-sub
 push this 1
 call Coordinates.getX 1
-push constant 1
+push constant 3
 add
 push this 1
 call Coordinates.getY 1
-push constant 1
+push constant 3
 add
 call Screen.drawRectangle 4
 pop temp 0
 push constant 0
 return
-function Food.erase 0
+function SnakeSegment.erase 0
 push argument 0
 pop pointer 0
 push constant 0
@@ -64,32 +48,28 @@ call Screen.setColor 1
 pop temp 0
 push this 1
 call Coordinates.getX 1
-push constant 1
-sub
 push this 1
 call Coordinates.getY 1
-push constant 1
-sub
 push this 1
 call Coordinates.getX 1
-push constant 1
+push constant 3
 add
 push this 1
 call Coordinates.getY 1
-push constant 1
+push constant 3
 add
 call Screen.drawRectangle 4
 pop temp 0
 push constant 0
 return
-function Food.dispose 0
+function SnakeSegment.dispose 0
 push argument 0
 pop pointer 0
-push this 1
-call Coordinates.dispose 1
-pop temp 0
 push this 0
 call RelativeCoordinates.dispose 1
+pop temp 0
+push this 1
+call Coordinates.dispose 1
 pop temp 0
 push pointer 0
 call Memory.deAlloc 1

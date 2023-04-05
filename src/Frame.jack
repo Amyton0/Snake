@@ -1,12 +1,5 @@
 class Frame {
 
-     static int x0;
-     static int y0;
-     static int x1;
-     static int y1;
-
-     static int frameWidth; 
-
      function void drawFrame(int x0, int y0, int x1, int y1, int frameWidth) {
           do Screen.setColor(true);
           do Screen.drawRectangle(x0,y0,x1,y1);
@@ -15,14 +8,18 @@ class Frame {
           return;
      }
 
-     function void drawScore(int x0, int y0, int score) {
+     function void drawTextForScore(int x0, int y0) {
           do Output.moveCursor(x0,y0);
 		do Output.printString("Score: ");
-		do Output.moveCursor(x0,y0+6); 
-		do Output.printInt(score);
           do Output.moveCursor(x0+3,y0);
 		do Output.printString("Close game:Q");
 
+          return;
+     }
+
+     function void drawScore(int x0, int y0, int score) {
+		do Output.moveCursor(x0, y0); 
+		do Output.printInt(score);
 
           return;
      }

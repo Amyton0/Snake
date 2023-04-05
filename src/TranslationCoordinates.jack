@@ -1,21 +1,15 @@
 class TranslationCoordinates {
-
-    static int x0;
-    static int y0;
-
-    static Coordinates coordinates;
-    static RelativeCoordinates relativeCoordinates;
-
-    static int width;
     
-    method RelativeCoordinates AbsoluteToRelative ( int x0, int y0, int width, Coordinates coordinates ) {
-         return RelativeCoordinates.new(x0 + width*coordinates.getX(), y0 + width*coordinates.getY()); 
+    function RelativeCoordinates AbsoluteToRelative (Coordinates coordinates) {
+          var Coordinates topLeftCorner;
+          let topLeftCorner = Main.getTopLeftCorner();
+          return RelativeCoordinates.new((coordinates.getX() - topLeftCorner.getX()) / (Main.getCellSize() + 1), (coordinates.getY() - topLeftCorner.getY()) / (Main.getCellSize() + 1));
+           
     } 
     
-    method Coordinates RelativeToAbsolute ( int x0, int y0, int width, RelativeCoordinates relativeCoordinates ) {
-         return Coordinates.new((relativeCoordinates.getX()-x0)/width, (relativeCoordinates.getX()-x0)/width); 
+    function Coordinates RelativeToAbsolute (RelativeCoordinates relativeCoordinates) {
+          var Coordinates topLeftCorner;
+          let topLeftCorner = Main.getTopLeftCorner();
+          return Coordinates.new(topLeftCorner.getX() + ((Main.getCellSize() + 1) * relativeCoordinates.getX()), topLeftCorner.getY() + ((Main.getCellSize() + 1) * relativeCoordinates.getY())); 
     } 
-
-
-
 }

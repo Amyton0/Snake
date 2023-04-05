@@ -17,4 +17,9 @@ class Coordinates
     method int getY(){
         return Y;
     }
+     
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
 }

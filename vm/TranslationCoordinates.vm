@@ -1,0 +1,46 @@
+function TranslationCoordinates.AbsoluteToRelative 1
+call Main.getTopLeftCorner 0
+pop local 0
+push argument 0
+call Coordinates.getX 1
+push local 0
+call Coordinates.getX 1
+sub
+call Main.getCellSize 0
+push constant 1
+add
+call Math.divide 2
+push argument 0
+call Coordinates.getY 1
+push local 0
+call Coordinates.getY 1
+sub
+call Main.getCellSize 0
+push constant 1
+add
+call Math.divide 2
+call RelativeCoordinates.new 2
+return
+function TranslationCoordinates.RelativeToAbsolute 1
+call Main.getTopLeftCorner 0
+pop local 0
+push local 0
+call Coordinates.getX 1
+call Main.getCellSize 0
+push constant 1
+add
+push argument 0
+call RelativeCoordinates.getX 1
+call Math.multiply 2
+add
+push local 0
+call Coordinates.getY 1
+call Main.getCellSize 0
+push constant 1
+add
+push argument 0
+call RelativeCoordinates.getY 1
+call Math.multiply 2
+add
+call Coordinates.new 2
+return

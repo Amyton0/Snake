@@ -1,22 +1,41 @@
-class Main
-{
+class Main {
+    static int topBorder;
+    static int leftBorder;
+    static int bottomBorder;
+    static int rightBorder;
+    static Coordinates topLeftCorner;
+
+    static int cellSize;
+
     function void main() {
-        var int topBorder;
-        var int leftBorder;
-        var int bottomBorder;
-        var int rightBorder;
-        var int i;
-        var Food food;
+        var Game game;
+
         let topBorder = 4;
         let leftBorder = 110;
         let bottomBorder = 251;
         let rightBorder = 507;
+        let cellSize = 4;
+
+        let topLeftCorner = Coordinates.new(leftBorder, topBorder);
+
+        let game = Game.new(topBorder, leftBorder, bottomBorder, rightBorder, cellSize);
+        do game.run();
         return;
     }
+
+    function Coordinates getTopLeftCorner() {
+        return topLeftCorner;
+    }
+
+    function int getCellSize() {
+        return cellSize;
+    }
+
+    function int getHeightInCells() {
+        return (bottomBorder - topBorder - 1) / (cellSize + 1);
+    }
+
+    function int getWidthInCells() {
+        return (rightBorder - leftBorder - 1) / (cellSize + 1);
+    }
 }
-
-
-        // var Food food;
-        // let food = Food.new();
-        // do food.dispose();
-        // do food.erase();

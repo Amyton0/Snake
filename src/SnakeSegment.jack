@@ -4,7 +4,7 @@ class SnakeSegment {
 
      constructor SnakeSegment new(RelativeCoordinates coords) {
         let coordinates = coords;
-        //let realCoordinates = метод для перевода в реальные координаты
+        let realCoordinates = TranslationCoordinates.RelativeToAbsolute(coords);
         do draw();
         return this;
      }
@@ -15,17 +15,19 @@ class SnakeSegment {
 
      method void draw() {
         do Screen.setColor(true);
-        do Screen.drawRectangle(realCoordinates.getX(), realCoordinates.getY(), realCoordinates.getX() + 4, realCoordinates.getY() + 4);
+        do Screen.drawRectangle(realCoordinates.getX(), realCoordinates.getY(), realCoordinates.getX() + 3, realCoordinates.getY() + 3);
         return;
      }
 
      method void erase() {
         do Screen.setColor(false);
-        do Screen.drawRectangle(realCoordinates.getX(), realCoordinates.getY(), realCoordinates.getX() + 4, realCoordinates.getY() + 4);
+        do Screen.drawRectangle(realCoordinates.getX(), realCoordinates.getY(), realCoordinates.getX() + 3, realCoordinates.getY() + 3);
         return;
      }
      
      method void dispose() {
+      do coordinates.dispose();
+      do realCoordinates.dispose();
         do Memory.deAlloc(this);
         return;
      }

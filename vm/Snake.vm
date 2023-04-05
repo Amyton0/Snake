@@ -1,0 +1,519 @@
+function Snake.new 3
+push constant 2
+call Memory.alloc 1
+pop pointer 0
+push argument 2
+call Array.new 1
+pop this 0
+push argument 2
+pop this 1
+push constant 0
+pop local 0
+push argument 1
+push constant 2
+call Math.divide 2
+push constant 1
+add
+pop local 1
+push argument 0
+push constant 2
+call Math.divide 2
+push argument 2
+push constant 2
+call Math.divide 2
+push constant 1
+sub
+sub
+pop local 2
+label WHILE_EXP0
+push local 0
+push this 1
+lt
+not
+if-goto WHILE_END0
+push local 0
+push this 0
+add
+push local 1
+push local 2
+push local 0
+add
+call RelativeCoordinates.new 2
+call SnakeSegment.new 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push pointer 0
+return
+function Snake.draw 2
+push argument 0
+pop pointer 0
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push this 1
+lt
+not
+if-goto WHILE_END0
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+pop local 1
+push local 1
+call SnakeSegment.draw 1
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Snake.move 6
+push argument 0
+pop pointer 0
+push this 1
+push constant 1
+sub
+push this 0
+add
+pop pointer 1
+push that 0
+pop local 1
+push constant 0
+push this 0
+add
+pop pointer 1
+push that 0
+pop local 2
+push local 2
+call SnakeSegment.getRelativeCoordinates 1
+pop local 4
+push local 1
+call SnakeSegment.erase 1
+pop temp 0
+push local 1
+call SnakeSegment.dispose 1
+pop temp 0
+push this 1
+push constant 1
+sub
+pop local 0
+label WHILE_EXP0
+push local 0
+push constant 0
+gt
+not
+if-goto WHILE_END0
+push local 0
+push constant 1
+sub
+push this 0
+add
+pop pointer 1
+push that 0
+pop local 3
+push local 3
+call SnakeSegment.getRelativeCoordinates 1
+pop local 5
+push local 0
+push this 0
+add
+push local 5
+call RelativeCoordinates.getX 1
+push local 5
+call RelativeCoordinates.getY 1
+call RelativeCoordinates.new 2
+call SnakeSegment.new 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+push constant 1
+sub
+pop local 0
+push local 3
+call SnakeSegment.dispose 1
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+push argument 1
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 4
+call RelativeCoordinates.getY 1
+push constant 1
+sub
+push constant 0
+lt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+return
+label IF_FALSE1
+push constant 0
+push this 0
+add
+push local 4
+call RelativeCoordinates.getX 1
+push local 4
+call RelativeCoordinates.getY 1
+push constant 1
+sub
+call RelativeCoordinates.new 2
+call SnakeSegment.new 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+label IF_FALSE0
+push argument 1
+push constant 1
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 4
+call RelativeCoordinates.getX 1
+push constant 1
+add
+call Main.getWidthInCells 0
+gt
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push constant 0
+return
+label IF_FALSE3
+push constant 0
+push this 0
+add
+push local 4
+call RelativeCoordinates.getX 1
+push constant 1
+add
+push local 4
+call RelativeCoordinates.getY 1
+call RelativeCoordinates.new 2
+call SnakeSegment.new 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+label IF_FALSE2
+push argument 1
+push constant 2
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push local 4
+call RelativeCoordinates.getY 1
+push constant 1
+add
+call Main.getHeightInCells 0
+gt
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push constant 0
+return
+label IF_FALSE5
+push constant 0
+push this 0
+add
+push local 4
+call RelativeCoordinates.getX 1
+push local 4
+call RelativeCoordinates.getY 1
+push constant 1
+add
+call RelativeCoordinates.new 2
+call SnakeSegment.new 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+label IF_FALSE4
+push argument 1
+push constant 3
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push local 4
+call RelativeCoordinates.getX 1
+push constant 1
+sub
+push constant 0
+lt
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push constant 0
+return
+label IF_FALSE7
+push constant 0
+push this 0
+add
+push local 4
+call RelativeCoordinates.getX 1
+push constant 1
+sub
+push local 4
+call RelativeCoordinates.getY 1
+call RelativeCoordinates.new 2
+call SnakeSegment.new 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+label IF_FALSE6
+push constant 0
+not
+return
+function Snake.increase 6
+push argument 0
+pop pointer 0
+push this 1
+push constant 1
+add
+pop this 1
+push this 1
+call Array.new 1
+pop local 1
+push this 1
+push constant 1
+sub
+pop local 0
+push constant 0
+push this 0
+add
+pop pointer 1
+push that 0
+pop local 2
+push local 2
+call SnakeSegment.getRelativeCoordinates 1
+pop local 4
+label WHILE_EXP0
+push local 0
+push constant 0
+gt
+not
+if-goto WHILE_END0
+push local 0
+push constant 1
+sub
+push this 0
+add
+pop pointer 1
+push that 0
+pop local 3
+push local 3
+call SnakeSegment.getRelativeCoordinates 1
+pop local 5
+push local 0
+push local 1
+add
+push local 5
+call RelativeCoordinates.getX 1
+push local 5
+call RelativeCoordinates.getY 1
+call RelativeCoordinates.new 2
+call SnakeSegment.new 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+push constant 1
+sub
+pop local 0
+push local 3
+call SnakeSegment.dispose 1
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+push argument 1
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+push local 1
+add
+push local 4
+call RelativeCoordinates.getX 1
+push local 4
+call RelativeCoordinates.getY 1
+push constant 1
+sub
+call RelativeCoordinates.new 2
+call SnakeSegment.new 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+label IF_FALSE0
+push argument 1
+push constant 1
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+push local 1
+add
+push local 4
+call RelativeCoordinates.getX 1
+push constant 1
+add
+push local 4
+call RelativeCoordinates.getY 1
+call RelativeCoordinates.new 2
+call SnakeSegment.new 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+label IF_FALSE1
+push argument 1
+push constant 2
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 0
+push local 1
+add
+push local 4
+call RelativeCoordinates.getX 1
+push local 4
+call RelativeCoordinates.getY 1
+push constant 1
+add
+call RelativeCoordinates.new 2
+call SnakeSegment.new 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+label IF_FALSE2
+push argument 1
+push constant 3
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push constant 0
+push local 1
+add
+push local 4
+call RelativeCoordinates.getX 1
+push constant 1
+sub
+push local 4
+call RelativeCoordinates.getY 1
+call RelativeCoordinates.new 2
+call SnakeSegment.new 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+label IF_FALSE3
+push this 0
+call Array.dispose 1
+pop temp 0
+push local 1
+pop this 0
+push constant 0
+return
+function Snake.isCollision 5
+push argument 0
+pop pointer 0
+push constant 0
+push this 0
+add
+pop pointer 1
+push that 0
+pop local 1
+push local 1
+call SnakeSegment.getRelativeCoordinates 1
+pop local 3
+push constant 2
+pop local 0
+label WHILE_EXP0
+push local 0
+push this 1
+lt
+not
+if-goto WHILE_END0
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+pop local 2
+push local 2
+call SnakeSegment.getRelativeCoordinates 1
+pop local 4
+push local 3
+call RelativeCoordinates.getX 1
+push local 4
+call RelativeCoordinates.getX 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 3
+call RelativeCoordinates.getY 1
+push local 4
+call RelativeCoordinates.getY 1
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+not
+return
+label IF_FALSE1
+label IF_FALSE0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Snake.getHead 0
+push argument 0
+pop pointer 0
+push constant 0
+push this 0
+add
+pop pointer 1
+push that 0
+return
+function Snake.getSnakeSize 0
+push argument 0
+pop pointer 0
+push this 1
+return

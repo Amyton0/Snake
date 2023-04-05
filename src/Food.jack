@@ -3,8 +3,8 @@ class Food {
      field Coordinates realCoordinates;
 
      constructor Food new(int topLimit, int bottomLimit, int leftLimit, int rightLimit) {
-          let realCoordinates = Random.randCoords(topLimit, bottomLimit - 3, leftLimit, rightLimit - 3);
-          //let relativeCoordinates = метод для перевода в относительные координаты
+          let realCoordinates = Random.randCoords(topLimit + 1, bottomLimit - 1, leftLimit + 1, rightLimit - 1);
+          let relativeCoordinates = TranslationCoordinates.AbsoluteToRelative(realCoordinates);
           do draw();
           return this;
      }
@@ -15,19 +15,19 @@ class Food {
 
      method void draw() {
           do Screen.setColor(true);
-          do Output.printInt(realCoordinates.getX());
-          do Output.printInt(realCoordinates.getY());
-          do Screen.drawRectangle(realCoordinates.getX(), realCoordinates.getY(), realCoordinates.getX() + 3, realCoordinates.getY() + 3);
+          do Screen.drawRectangle(realCoordinates.getX() - 1, realCoordinates.getY() - 1, realCoordinates.getX() + 1, realCoordinates.getY() + 1);
           return;
      }
 
      method void erase() {
           do Screen.setColor(false);
-          do Screen.drawRectangle(realCoordinates.getX(), realCoordinates.getY(), realCoordinates.getX() + 3, realCoordinates.getY() + 3);
+          do Screen.drawRectangle(realCoordinates.getX() - 1, realCoordinates.getY() - 1, realCoordinates.getX() + 1, realCoordinates.getY() + 1);
           return;
      }
      
      method void dispose() {
+          do realCoordinates.dispose();
+          do relativeCoordinates.dispose();
           do Memory.deAlloc(this);
           return;
      }

@@ -1,45 +1,93 @@
 class Game {
 
-   constructor Game new() {
-      // тут создавали квадрат, но я думаю по аналогии можно создавать змею(?)
-      let snake = Snake.new(0, 0, 30);
-      let direction = 0;  // initial state is no movement
+   field int topBorder;
+   field int leftBorder;
+   field int bottomBorder;
+   field int rightBorder;
+   field int direction;
+
+   field int heightInCells;
+   field int wigthInCells;
+   field int cellSize;
+
+   field int score;
+
+   field Snake snake;
+   field Food food;
+
+
+   constructor Game new(int top, int left, int bottom, int right, int cell) {
+      let topBorder = top;
+      let leftBorder = left;
+      let bottomBorder = bottom;
+      let rightBorder = right;
+      let cellSize = cell;
+
+      let heightInCells = (bottomBorder - topBorder - 1) / (cellSize + 1);
+      let wigthInCells = (rightBorder - leftBorder - 1) / (cellSize + 1);
+
+      let direction = 0;
+
+      do Frame.drawFrame(leftBorder, topBorder, rightBorder, bottomBorder, 1);
+      do Frame.drawFrame(4, 4, 105, 105, 1);
+      do Frame.drawTextForScore(1, 1);
+      do Frame.drawScore(1, 7, score);
+
+      let snake = Snake.new(heightInCells, wigthInCells, 5);
+      let food = Food.new(topBorder, bottomBorder, leftBorder, rightBorder);
+
       return this;
    }
 
-   method void moveSquare() {
-      //это было движение квадрата по направлению
-      if (direction = 1) { do square.moveUp(); }
-      if (direction = 2) { do square.moveDown(); }
-      if (direction = 3) { do square.moveLeft(); }
-      if (direction = 4) { do square.moveRight(); }
-      do Sys.wait(5);  // delays the next movement
-      return;
-   }
-
     method void run() {
-      var char key;  // the key currently pressed by the user
+      var char key;
       var boolean exit;
+      var SnakeSegment head;
+      var RelativeCoordinates headCoordinates, foodCoordinates;
+
       let exit = false;
+      let score = 0;
       
       while (~exit) {
-         // waits for a key to be pressed
-         while (key = 0) {
-            let key = Keyboard.keyPressed();
-            do moveSquare();
-         }
-         if (key = 81)  { let exit = true; }     // q key
-         if (key = 131) { let direction = 1; }   // up arrow
-         if (key = 132) { let direction = 2; }   // right arrow
-         if (key = 133) { let direction = 3; }   // down arrow
-         if (key = 130) { let direction = 4; }   // left arrow
+         let key = Keyboard.keyPressed();
 
-         // waits for the key to be released
-         while (~(key = 0)) {
-            let key = Keyboard.keyPressed();
-            do moveSquare();
+         if (key = 81)  { let exit = true; }
+         if (key = 131) { if (~(direction = 2)) { let direction = 0; } }
+         if (key = 132) { if (~(direction = 3)) { let direction = 1; } }
+         if (key = 133) { if (~(direction = 0)) { let direction = 2; } }
+         if (key = 130) { if (~(direction = 1)) { let direction = 3; } }
+         
+         do Sys.wait(35);
+         
+         let head = snake.getHead();
+         let headCoordinates = head.getRelativeCoordinates();
+
+         let foodCoordinates = food.getRelativeCoordinates();
+
+         if (headCoordinates.getX() = foodCoordinates.getX()) {
+            if (headCoordinates.getY() = foodCoordinates.getY()) {
+               do snake.increase(direction);
+               do food.erase();
+               do food.dispose();
+               let food = Food.new(topBorder, bottomBorder, leftBorder, rightBorder);
+               let score = score + 1;
+               do Frame.drawScore(1, 7, score);
+            }
          }
-     } // while
+         
+         do snake.draw();
+         do food.draw();
+
+         if (~snake.move(direction)) {
+            do EndScreen.drawEnd(10, 27, score);
+            let exit = true;
+         }
+
+         if (snake.isCollision()) {
+            do EndScreen.drawEnd(10, 27, score);
+            let exit = true;
+         }
+     }
      return;
    }
 }

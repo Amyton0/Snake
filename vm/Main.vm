@@ -1,11 +1,55 @@
-function Main.main 6
+function Main.main 1
 push constant 4
-pop local 0
+pop static 0
 push constant 110
-pop local 1
+pop static 1
 push constant 251
-pop local 2
+pop static 2
 push constant 507
-pop local 3
+pop static 3
+push constant 4
+pop static 5
+push static 1
+push static 0
+call Coordinates.new 2
+pop static 4
+push static 0
+push static 1
+push static 2
+push static 3
+push static 5
+call Game.new 5
+pop local 0
+push local 0
+call Game.run 1
+pop temp 0
 push constant 0
+return
+function Main.getTopLeftCorner 0
+push static 4
+return
+function Main.getCellSize 0
+push static 5
+return
+function Main.getHeightInCells 0
+push static 2
+push static 0
+sub
+push constant 1
+sub
+push static 5
+push constant 1
+add
+call Math.divide 2
+return
+function Main.getWidthInCells 0
+push static 3
+push static 1
+sub
+push constant 1
+sub
+push static 5
+push constant 1
+add
+call Math.divide 2
 return
