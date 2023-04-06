@@ -13,6 +13,12 @@ class Frame {
 		do Output.printString("Score: ");
           do Output.moveCursor(x0+3,y0);
 		do Output.printString("Close game:Q");
+          do Output.moveCursor(x0+6,y0);
+		do Output.printString("Speed");
+          do Output.moveCursor(x0+9,y0+1);
+		do Output.printString("Increase:+");
+          do Output.moveCursor(x0+12,y0+3);
+		do Output.printString("Reduce:-");
 
           return;
      }
