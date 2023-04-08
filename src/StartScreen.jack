@@ -1,0 +1,15 @@
+class StartScreen {
+     function void drawStart(int x, int y) {
+          do Screen.clearScreen();
+          do Output.moveCursor(x,y);
+          do Output.printString("START GAME");
+          do Output.moveCursor(x + 3, y);
+          do Output.printString("Press SPACE");
+        return;
+     }
+
+     method void dispose() {
+          do Memory.deAlloc(this);
+          return;
+     }
+}
