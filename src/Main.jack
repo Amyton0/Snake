@@ -18,6 +18,8 @@ class Main {
 
         let topLeftCorner = Coordinates.new(leftBorder, topBorder);
 
+        do StartScreen.drawStart(10,27);
+
         let game = Game.new(topBorder, leftBorder, bottomBorder, rightBorder, cellSize);
         do game.run();
         return;
@@ -37,5 +39,21 @@ class Main {
 
     function int getWidthInCells() {
         return (rightBorder - leftBorder - 1) / (cellSize + 1);
+    }
+
+    function int getTopBorder() {
+        return topBorder;
+    }
+    
+    function int getLeftBorder() {
+        return leftBorder;
+    }
+    
+    function int getBottomBorder() {
+        return bottomBorder;
+    }
+    
+    function int getRightBorder() {
+        return rightBorder;
     }
 }

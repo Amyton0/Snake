@@ -1,4 +1,4 @@
-function Game.new 0
+function Game.new 1
 push constant 11
 call Memory.alloc 1
 pop pointer 0
@@ -34,6 +34,21 @@ call Math.divide 2
 pop this 6
 push constant 0
 pop this 4
+label WHILE_EXP0
+push constant 0
+not
+not
+if-goto WHILE_END0
+call Keyboard.keyPressed 0
+pop local 0
+push local 0
+push constant 32
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+call Screen.clearScreen 0
+pop temp 0
 push this 1
 push this 0
 push this 3
@@ -72,17 +87,20 @@ call Food.new 4
 pop this 10
 push pointer 0
 return
-function Game.run 6
+label IF_FALSE0
+goto WHILE_EXP0
+label WHILE_END0
+push pointer 0
+return
+function Game.run 5
 push argument 0
 pop pointer 0
 push constant 0
-pop local 1
-push constant 0
 pop this 8
 push constant 70
-pop local 5
+pop local 4
 label WHILE_EXP0
-push local 1
+push constant 0
 not
 not
 if-goto WHILE_END0
@@ -94,16 +112,16 @@ eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push local 5
+push local 4
 push constant 20
 gt
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push local 5
+push local 4
 push constant 5
 sub
-pop local 5
+pop local 4
 label IF_FALSE1
 label IF_FALSE0
 push local 0
@@ -112,124 +130,114 @@ eq
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
-push local 5
+push local 4
 push constant 120
 lt
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
-push local 5
+push local 4
 push constant 5
 add
-pop local 5
+pop local 4
 label IF_FALSE3
 label IF_FALSE2
 push local 0
-push constant 81
+push constant 131
 eq
 if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
-push constant 0
-not
-pop local 1
-label IF_FALSE4
-push local 0
-push constant 131
+push this 4
+push constant 2
 eq
+not
 if-goto IF_TRUE5
 goto IF_FALSE5
 label IF_TRUE5
-push this 4
-push constant 2
-eq
-not
-if-goto IF_TRUE6
-goto IF_FALSE6
-label IF_TRUE6
 push constant 0
 pop this 4
-label IF_FALSE6
 label IF_FALSE5
+label IF_FALSE4
 push local 0
 push constant 132
 eq
-if-goto IF_TRUE7
-goto IF_FALSE7
-label IF_TRUE7
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
 push this 4
 push constant 3
 eq
 not
-if-goto IF_TRUE8
-goto IF_FALSE8
-label IF_TRUE8
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
 push constant 1
 pop this 4
-label IF_FALSE8
 label IF_FALSE7
+label IF_FALSE6
 push local 0
 push constant 133
 eq
-if-goto IF_TRUE9
-goto IF_FALSE9
-label IF_TRUE9
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
 push this 4
 push constant 0
 eq
 not
-if-goto IF_TRUE10
-goto IF_FALSE10
-label IF_TRUE10
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
 push constant 2
 pop this 4
-label IF_FALSE10
 label IF_FALSE9
+label IF_FALSE8
 push local 0
 push constant 130
 eq
-if-goto IF_TRUE11
-goto IF_FALSE11
-label IF_TRUE11
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
 push this 4
 push constant 1
 eq
 not
-if-goto IF_TRUE12
-goto IF_FALSE12
-label IF_TRUE12
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
 push constant 3
 pop this 4
-label IF_FALSE12
 label IF_FALSE11
-push local 5
+label IF_FALSE10
+push local 4
 call Sys.wait 1
 pop temp 0
 push this 9
 call Snake.getHead 1
-pop local 2
-push local 2
+pop local 1
+push local 1
 call SnakeSegment.getRelativeCoordinates 1
-pop local 3
+pop local 2
 push this 10
 call Food.getRelativeCoordinates 1
-pop local 4
+pop local 3
+push local 2
+call RelativeCoordinates.getX 1
 push local 3
 call RelativeCoordinates.getX 1
-push local 4
-call RelativeCoordinates.getX 1
+eq
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
+push local 2
+call RelativeCoordinates.getY 1
+push local 3
+call RelativeCoordinates.getY 1
 eq
 if-goto IF_TRUE13
 goto IF_FALSE13
 label IF_TRUE13
-push local 3
-call RelativeCoordinates.getY 1
-push local 4
-call RelativeCoordinates.getY 1
-eq
-if-goto IF_TRUE14
-goto IF_FALSE14
-label IF_TRUE14
 push this 9
 push this 4
 call Snake.increase 2
@@ -255,8 +263,8 @@ push constant 7
 push this 8
 call Frame.drawScore 3
 pop temp 0
-label IF_FALSE14
 label IF_FALSE13
+label IF_FALSE12
 push this 9
 call Snake.draw 1
 pop temp 0
@@ -267,33 +275,37 @@ push this 9
 push this 4
 call Snake.move 2
 not
+if-goto IF_TRUE14
+goto IF_FALSE14
+label IF_TRUE14
+push constant 8
+push constant 24
+push this 8
+push pointer 0
+call EndScreen.drawEnd 4
+pop temp 0
+label IF_FALSE14
+push this 9
+call Snake.isCollision 1
 if-goto IF_TRUE15
 goto IF_FALSE15
 label IF_TRUE15
-push constant 10
-push constant 27
+push constant 8
+push constant 24
 push this 8
-call EndScreen.drawEnd 3
+push pointer 0
+call EndScreen.drawEnd 4
 pop temp 0
-push constant 0
-not
-pop local 1
 label IF_FALSE15
-push this 9
-call Snake.isCollision 1
-if-goto IF_TRUE16
-goto IF_FALSE16
-label IF_TRUE16
-push constant 10
-push constant 27
-push this 8
-call EndScreen.drawEnd 3
-pop temp 0
-push constant 0
-not
-pop local 1
-label IF_FALSE16
 goto WHILE_EXP0
 label WHILE_END0
+push constant 0
+return
+function Game.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
 push constant 0
 return

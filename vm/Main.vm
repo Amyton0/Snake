@@ -13,6 +13,10 @@ push static 1
 push static 0
 call Coordinates.new 2
 pop static 4
+push constant 10
+push constant 27
+call StartScreen.drawStart 2
+pop temp 0
 push static 0
 push static 1
 push static 2
@@ -52,4 +56,16 @@ push static 5
 push constant 1
 add
 call Math.divide 2
+return
+function Main.getTopBorder 0
+push static 0
+return
+function Main.getLeftBorder 0
+push static 1
+return
+function Main.getBottomBorder 0
+push static 2
+return
+function Main.getRightBorder 0
+push static 3
 return

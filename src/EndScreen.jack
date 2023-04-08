@@ -1,5 +1,6 @@
 class EndScreen {
-     function void drawEnd(int x, int y, int score) {
+     function void drawEnd(int x, int y, int score, Game game) {
+          var int top, left, bottom, right, cellSize;
           do Screen.clearScreen();
           do Output.moveCursor(x,y);
           do Output.printString("GAME OVER");
@@ -7,11 +8,19 @@ class EndScreen {
           do Output.printString("Score:");
           do Output.moveCursor(x + 3, y + 7);
           do Output.printInt(score);
-        return;
-     }
+          do Output.moveCursor(x + 6, y);
+          do Output.printString("Press SPACE");
+          do game.dispose();
 
-     method void dispose() {
-          do Memory.deAlloc(this);
-          return;
+          let top = Main.getTopBorder();
+          let left = Main.getLeftBorder();
+          let bottom = Main.getBottomBorder();
+          let right = Main.getRightBorder();
+          let cellSize = Main.getCellSize();
+
+          let game = Game.new(top, left, bottom, right, cellSize);
+          do game.run();
+
+        return;
      }
 }
