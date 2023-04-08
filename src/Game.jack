@@ -17,6 +17,8 @@ class Game {
 
 
    constructor Game new(int top, int left, int bottom, int right, int cell) {
+      var char key;
+
       let topBorder = top;
       let leftBorder = left;
       let bottomBorder = bottom;
@@ -28,13 +30,25 @@ class Game {
 
       let direction = 0;
 
-      do Frame.drawFrame(leftBorder, topBorder, rightBorder, bottomBorder, 1);
-      do Frame.drawFrame(4, 4, leftBorder - 5, 170, 1);
-      do Frame.drawTextForScore(1, 1);
-      do Frame.drawScore(1, 7, score);
+      do StartScreen.drawStart(10,27);
+      
+      while (true) {
+          let key = Keyboard.keyPressed();
+          if (key = 32){
 
-      let snake = Snake.new(heightInCells, wigthInCells, 5);
-      let food = Food.new(topBorder, bottomBorder, leftBorder, rightBorder);
+             do Screen.clearScreen();
+
+             do Frame.drawFrame(leftBorder, topBorder, rightBorder, bottomBorder, 1);
+             do Frame.drawFrame(4, 4, leftBorder - 5, 170, 1);
+             do Frame.drawTextForScore(1, 1);
+             do Frame.drawScore(1, 7, score);
+
+             let snake = Snake.new(heightInCells, wigthInCells, 5);
+             let food = Food.new(topBorder, bottomBorder, leftBorder, rightBorder);
+
+            return this;
+         }
+      }
 
       return this;
    }
