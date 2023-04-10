@@ -63,12 +63,12 @@ class Game {
       while (true) {
          let key = Keyboard.keyPressed();
 
-         if (key = 43)  { if (waitingTime > 20) { let waitingTime = waitingTime - 5; } }
-         if (key = 45)  { if (waitingTime < 120) { let waitingTime = waitingTime + 5; } }
-         if (key = 131) { if (~(direction = 2)) { let direction = 0; } }
-         if (key = 132) { if (~(direction = 3)) { let direction = 1; } }
-         if (key = 133) { if (~(direction = 0)) { let direction = 2; } }
-         if (key = 130) { if (~(direction = 1)) { let direction = 3; } }
+         if (key = 43)  { if (waitingTime > 20) { let waitingTime = waitingTime - 5; } } //клавиша + для увеличения скорости
+         if (key = 45)  { if (waitingTime < 120) { let waitingTime = waitingTime + 5; } } //клавиша - для уменьшения скорости
+         if (key = 131) { if (~(direction = 2)) { let direction = 0; } } //стрелочка вверх для управления
+         if (key = 132) { if (~(direction = 3)) { let direction = 1; } } //стрелочка вправо для управления
+         if (key = 133) { if (~(direction = 0)) { let direction = 2; } } //стрелочка вниз для управления
+         if (key = 130) { if (~(direction = 1)) { let direction = 3; } } //стрелочка влево для управления
          
          do Sys.wait(waitingTime);
          

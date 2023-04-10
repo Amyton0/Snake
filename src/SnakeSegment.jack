@@ -28,8 +28,7 @@ class SnakeSegment {
      method void dispose() {
       do coordinates.dispose();
       do realCoordinates.dispose();
-        do Memory.deAlloc(this);
-        return;
+      do Memory.deAlloc(this);
+      return;
      }
-
 }
