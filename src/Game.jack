@@ -29,6 +29,8 @@ class Game {
       let wigthInCells = (rightBorder - leftBorder - 1) / (cellSize + 1);
 
       let direction = 0;
+
+      do StartScreen.drawStart(10,27);
       
       while (true) {
           let key = Keyboard.keyPressed();
@@ -53,22 +55,25 @@ class Game {
 
     method void run() {
       var char key;
+      var boolean exit;
       var SnakeSegment head;
       var RelativeCoordinates headCoordinates, foodCoordinates;
       var int waitingTime;
 
+      let exit = false;
       let score = 0;
       let waitingTime = 70;
       
-      while (true) {
+      while (~exit) {
          let key = Keyboard.keyPressed();
 
-         if (key = 43)  { if (waitingTime > 20) { let waitingTime = waitingTime - 5; } } //клавиша + для увеличения скорости
-         if (key = 45)  { if (waitingTime < 120) { let waitingTime = waitingTime + 5; } } //клавиша - для уменьшения скорости
-         if (key = 131) { if (~(direction = 2)) { let direction = 0; } } //стрелочка вверх для управления
-         if (key = 132) { if (~(direction = 3)) { let direction = 1; } } //стрелочка вправо для управления
-         if (key = 133) { if (~(direction = 0)) { let direction = 2; } } //стрелочка вниз для управления
-         if (key = 130) { if (~(direction = 1)) { let direction = 3; } } //стрелочка влево для управления
+         if (key = 43)  { if (waitingTime > 20) { let waitingTime = waitingTime - 5; } }
+         if (key = 45)  { if (waitingTime < 120) { let waitingTime = waitingTime + 5; } }
+         if (key = 81)  { let exit = true; }
+         if (key = 131) { if (~(direction = 2)) { let direction = 0; } }
+         if (key = 132) { if (~(direction = 3)) { let direction = 1; } }
+         if (key = 133) { if (~(direction = 0)) { let direction = 2; } }
+         if (key = 130) { if (~(direction = 1)) { let direction = 3; } }
          
          do Sys.wait(waitingTime);
          
@@ -92,18 +97,15 @@ class Game {
          do food.draw();
 
          if (~snake.move(direction)) {
-            do EndScreen.drawEnd(8, 24, score, this);
+            do EndScreen.drawEnd(10, 27, score);
+            let exit = true;
          }
 
          if (snake.isCollision()) {
-            do EndScreen.drawEnd(8, 24, score, this);
+            do EndScreen.drawEnd(10, 27, score);
+            let exit = true;
          }
       }
       return;
    }
-
-     method void dispose() {
-          do Memory.deAlloc(this);
-          return;
-     }
 }
