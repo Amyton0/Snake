@@ -1,5 +1,5 @@
 function Game.new 1
-push constant 11
+push constant 12
 call Memory.alloc 1
 pop pointer 0
 push argument 0
@@ -243,7 +243,8 @@ push this 4
 call Snake.increase 2
 pop temp 0
 push this 10
-call Food.erase 1
+push constant 0
+call Food.draw 2
 pop temp 0
 push this 10
 call Food.dispose 1
@@ -266,10 +267,14 @@ pop temp 0
 label IF_FALSE13
 label IF_FALSE12
 push this 9
-call Snake.draw 1
+push constant 0
+not
+call Snake.draw 2
 pop temp 0
 push this 10
-call Food.draw 1
+push constant 0
+not
+call Food.draw 2
 pop temp 0
 push this 9
 push this 4
