@@ -5,7 +5,7 @@ class Food {
      constructor Food new(int topLimit, int bottomLimit, int leftLimit, int rightLimit) {
           let realCoordinates = Random.randCoords(topLimit + 1, bottomLimit - 1, leftLimit + 1, rightLimit - 1);
           let relativeCoordinates = TranslationCoordinates.AbsoluteToRelative(realCoordinates);
-          do draw();
+          do draw(true);
           return this;
      }
 
@@ -13,18 +13,12 @@ class Food {
          return relativeCoordinates;
      }
 
-     method void draw() {
-          do Screen.setColor(true);
+     method void draw(bool color) {
+          do Screen.setColor(color);
           do Screen.drawRectangle(realCoordinates.getX() - 1, realCoordinates.getY() - 1, realCoordinates.getX() + 1, realCoordinates.getY() + 1);
           return;
      }
-
-     method void erase() {
-          do Screen.setColor(false);
-          do Screen.drawRectangle(realCoordinates.getX() - 1, realCoordinates.getY() - 1, realCoordinates.getX() + 1, realCoordinates.getY() + 1);
-          return;
-     }
-     
+   
      method void dispose() {
           do realCoordinates.dispose();
           do relativeCoordinates.dispose();
